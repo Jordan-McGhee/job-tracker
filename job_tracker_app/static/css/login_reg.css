@@ -1,0 +1,51 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+
+#wrapper {
+    width: 95%;
+    margin: auto;
+}
+
+.is-ancestor {
+    margin: auto;
+    /* outline: 1px solid black; */
+}
+
+#wtf {
+    /* border: 1px solid red; */
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+
+nav {
+    margin: 20px auto;
+    padding: 10px;
+    /* outline: 1px solid black; */
+}
+
+.card {
+    margin-bottom: 0px;
+}
+
+#register-login {
+    padding: 20px;
+    margin-top: 0px;
+}
+
+#register-login-title {
+    margin-bottom: 0px;
+}
+
+.messages {
+    color: red;
+    text-align: center;
+    margin: 10px auto;
+    list-style-type: none;
+    outline: 1px solid red;
+    padding: 15px;
+    width: 50%
+}
+

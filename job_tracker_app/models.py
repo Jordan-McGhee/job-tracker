@@ -15,13 +15,13 @@ class UserManager(models.Manager):
         if len(postData['first_name']) < 2:
             errors['first_name'] = "First name must be at least 2 letters long"
 
-        if not postData['first_name'].isalpha():
+        elif not postData['first_name'].isalpha():
             errors['first_name_alpha'] = "First name must contain letters only"
 
         if len(postData['last_name']) < 2:
             errors['last_name'] = "Last name must be at least 2 letters long"
 
-        if not postData['last_name'].isalpha():
+        elif not postData['last_name'].isalpha():
             errors['last_name_alpha'] = "Last name must contain letters only"
 
         if not EMAIL_REGEX.match(postData['email']):
