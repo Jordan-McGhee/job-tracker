@@ -4,7 +4,7 @@ from django.contrib import messages
 
 # Create your views here.
 
-# LOGIN/REGISTER
+# LOGIN/REGISTER/LOGOUT
 
 def index(request):
     return render(request, "login_reg.html")
@@ -21,7 +21,7 @@ def register(request):
         new_user = User.objects.register(request.POST)
         request.session['user_id'] = new_user.id
 
-        return redirect('/swolemates')
+        return redirect('/jobtracker/dashboard')
 
     return redirect('/')
 
@@ -35,10 +35,22 @@ def login(request):
         user = User.objects.get(email = request.POST['email'])
         request.session['user_id'] = user.id
 
-        return redirect('/swolemates')
+        return redirect('/jobtracker/dashboard')
 
     return redirect('/')
 
 def logout(request):
     request.session.flush()
     return redirect('/')
+
+def dashboard(request):
+    if 'user_id' not in request.session:
+        return redirect('/')
+
+    user = User.objects.get(id=request.session['user_id'])
+
+    context = {
+
+    }
+
+    return HttpResponse("working")
