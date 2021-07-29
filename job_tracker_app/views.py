@@ -95,7 +95,24 @@ def edit_job(request, job_id):
 
 def update_job(request, job_id):
     if request.method == "POST":
+        errors = Job.objects.validator(request.POST)
+
+        if len(errors) > 0:
+            for k,v in errors.items():
+                messages.error(request, v)
+            return redirect(f"/jobtracker/edit_job")
+
+
         job = Job.objects.get(id=job_id)
+
+        job.company = request.POST['company']
+        job.role = request.POST['role']
+        job.city = request.POST['city']
+        job.state = request.POST['state']
+        job.company_website = request.POST['company_website']
+        job.job_posting_url = request.POST['job_posting_url']
+        job.status = request.POST['status']
+        job.save()
 
     return redirect(f'/jobtracker/job/{job_id}')
 
@@ -110,3 +127,28 @@ def view_job(request, job_id):
         "comments": job.comments.all()
     }
     return render(request, "view_job.html", context)
+
+def create_comment(request, job_id):
+    if request.method == "POST":
+        job = Job.objects.get(id=job_id)
+
+        errors = Comment.objects.validator(request.POST)
+
+        if len(errors) > 0:
+            for k,v in errors.items():
+                messages.error(request, v)
+            return redirect(f"/jobtracker/job/{job_id}")
+
+        Comment.objects.create(
+            content = request.POST['content'],
+            job = job
+        )
+
+    return redirect(f"/jobtracker/job/{job_id}")
+
+def delete_comment(request, job_id, comment_id):
+    if request.method == "POST":
+        comment = Comment.objects.get(id=comment_id)
+        comment.delete()
+
+    return redirect(f"/jobtracker/job/{job_id}")
