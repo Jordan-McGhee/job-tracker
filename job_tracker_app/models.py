@@ -94,7 +94,8 @@ class User(models.Model):
     password = models.CharField(max_length = 60)
 
     # SPACE FOR RELATIONSHIPS IF ANY
-    
+    # jobs > user in Job class
+
     objects = UserManager()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -121,6 +122,7 @@ class Job(models.Model):
 
     # SPACE FOR RELATIONSHIPS IF ANY
 
+    user = models.ForeignKey(User, related_name="jobs", on_delete=models.CASCADE, default= None)
     # comments > job in in Comment class
 
     objects = JobManager()
