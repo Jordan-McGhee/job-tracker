@@ -50,7 +50,8 @@ def dashboard(request):
     user = User.objects.get(id=request.session['user_id'])
 
     context = {
-
+        "user": user,
+        "jobs": user.jobs.all()
     }
 
-    return HttpResponse("working")
+    return render(request,"dashboard.html", context)
