@@ -9,5 +9,16 @@ urlpatterns = [
     path('logout', views.logout),
 
     # DASHBOARD
-    path('jobtracker/dashboard', views.dashboard)
+    path('jobtracker/dashboard', views.dashboard),
+
+    # ADD JOB/CREATE JOB
+    path('jobtracker/add_job', views.add_job),
+    path('jobtracker/create_job', views.create_new_job_posting),
+
+    # EDIT JOB
+    path('jobtracker/job/<int:job_id>/edit', views.edit_job),
+    path('jobtracker/job/<int:job_id>/update', views.update_job),
+
+    # VIEW JOB
+    path('jobtracker/job/<int:job_id>', views.view_job)
 ]

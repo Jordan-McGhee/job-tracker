@@ -43,6 +43,8 @@ def logout(request):
     request.session.flush()
     return redirect('/')
 
+# DASHBOARD
+
 def dashboard(request):
     if 'user_id' not in request.session:
         return redirect('/')
@@ -55,3 +57,56 @@ def dashboard(request):
     }
 
     return render(request,"dashboard.html", context)
+
+# ADD JOB POSTING
+def add_job(request):
+    return render(request, "new_job.html")
+
+def create_new_job_posting(request):
+    if request.method == "POST":
+        errors = Job.objects.validator(request.POST)
+
+        if len(errors) > 0:
+            for k,v in errors.items():
+                messages.error(request, v)
+            return redirect(f"/jobtracker/add_job")
+
+        job = Job.objects.create(
+            company = request.POST['company'],
+            role = request.POST['role'],
+            city = request.POST['city'],
+            state = request.POST['state'],
+            company_website = request.POST['company_website'],
+            job_posting_url = request.POST['job_posting_url'],
+            status = request.POST['status'],
+        )
+    return redirect(f'/jobtracker/job/{job.id}')
+
+
+# EDIT JOB POSTING
+def edit_job(request, job_id):
+    job = Job.objects.get(id=job_id)
+
+    context = {
+        "user": User.objects.get(id=request.session['user_id']),
+        "job": job
+    }
+    return render(request, "edit_job.html", context)
+
+def update_job(request, job_id):
+    if request.method == "POST":
+        job = Job.objects.get(id=job_id)
+
+    return redirect(f'/jobtracker/job/{job_id}')
+
+
+# VIEW JOB POSTING
+def view_job(request, job_id):
+    job = Job.objects.get(id=job_id)
+
+    context = {
+        "user": User.objects.get(id=request.session['user_id']),
+        "job": job,
+        "comments": job.comments.all()
+    }
+    return render(request, "view_job.html", context)

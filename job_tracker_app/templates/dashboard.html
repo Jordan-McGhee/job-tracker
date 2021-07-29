@@ -69,7 +69,10 @@
                 <tr>
                     <td>{{job.company}}</td>
                     <td>{{job.role}}</td>
-                    <td><a href="{{job.job_posting.url))">Link to Job Posting</a></td>
+
+                    <!-- FIX URL REDIRECT BELOW IN URLS/VIEWS-->
+                    <td><a href="/{{job.job_posting_url}}">Link to Job Posting</a></td>
+                    
                     <td>{{job.city}}, {{job.state}}</td>
                     <td>{{job.status}}</td>
                 </tr>
