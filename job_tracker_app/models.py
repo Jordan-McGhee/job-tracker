@@ -78,6 +78,14 @@ class JobManager(models.Manager):
 
         return errors
 
+class CommentManager(models.Manager):
+    def validator(self, postData):
+        errors = {}
+        if len(postData['comment']) < 1:
+            errors['comment'] = "Comment can't be empty"
+
+        return errors
+
 # MODELS
 class User(models.Model):
     first_name = models.CharField(max_length = 50)
@@ -113,9 +121,21 @@ class Job(models.Model):
 
     # SPACE FOR RELATIONSHIPS IF ANY
 
+    # comments > job in in Comment class
+
     objects = JobManager()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f"Company: {self.company}, Role: {self.role}"
+
+class Comment(models.Model):
+    content = models.TextField()
+
+    # SPACE FOR RELATIONSHIPS 
+    job = models.ForeignKey(Job, related_name="comments", on_delete=models.CASCADE)
+
+    objects = CommentManager()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
