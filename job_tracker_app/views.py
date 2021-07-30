@@ -70,6 +70,7 @@ def add_job(request):
 
 def create_new_job_posting(request):
     if request.method == "POST":
+        user = User.objects.get(id=request.session['user_id'])
         errors = Job.objects.validator(request.POST)
 
         if len(errors) > 0:
@@ -85,7 +86,8 @@ def create_new_job_posting(request):
             company_website = request.POST['company_website'],
             job_posting_url = request.POST['job_posting_url'],
             status = request.POST['status'],
-            description = request.POST['description']
+            description = request.POST['description'],
+            user = user
         )
     return redirect(f'/jobtracker/job/{job.id}')
 

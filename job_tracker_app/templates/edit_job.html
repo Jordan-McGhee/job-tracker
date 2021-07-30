@@ -87,7 +87,7 @@
 
             <div class="field">
                 <label for="status" class="label">Status</label>
-                <select name="category" class="select">
+                <select name="status" class="select">
                     {% for choice in status_choices %}
                         {% if choice == job.status %}
                             <option value="{{choice.0}}" selected>{{choice.1}}</option>

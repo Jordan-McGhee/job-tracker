@@ -71,8 +71,7 @@
                         <td><a href="/jobtracker/job/{{job.id}}">{{job.company}}</a></td>
                         <td>{{job.role}}</td>
 
-                        <!-- FIX URL REDIRECT BELOW IN URLS/VIEWS-->
-                        <td><a href="/{{job.job_posting_url}}">Link to Job Posting</a></td>
+                        <td><a href="https://{{job.job_posting_url}}" target="_blank">Link to Job Posting</a></td>
 
                         <td>{{job.city}}, {{job.state}}</td>
                         <td>{{job.get_status_display}}</td>

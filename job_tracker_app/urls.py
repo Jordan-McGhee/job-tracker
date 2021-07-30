@@ -22,5 +22,5 @@ urlpatterns = [
     # VIEW JOB
     path('jobtracker/job/<int:job_id>', views.view_job),
     path('jobtracker/job/<int:job_id>/add_comment', views.create_comment),
-    path('jobtracker/job/<int:job_id>/comment/<int:comment_id>/delete_comment', views.delete_comment)
+    path('jobtracker/job/<int:job_id>/comment/<int:comment_id>/delete_comment', views.delete_comment),
 ]

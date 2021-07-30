@@ -72,7 +72,7 @@
         {% endif %}
         <!-- END ERROR MESSAGES -->
 
-        <p>{{job.company}}</p>
+        <p class="title is-2"><a href="https://{{job.company_website}}" target="_blank">{{job.company}}</a></p>
         <p>{{job.role}} <span>{{job.city}}, {{job.state}}</span></p>
         <p>{{job.get_status_display}}</p>
         <p>Description</p>
