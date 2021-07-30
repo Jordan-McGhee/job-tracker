@@ -76,6 +76,10 @@ class JobManager(models.Manager):
         if postData['job_posting_url'] and not WEBSITE_REGEX.match(postData['job_posting_url']):
             errors['job_posting_url'] = "Please enter a valid URL for the job company"
 
+        if postData['description']:
+            if len(postData['description']) < 10 :
+                errors['description'] = "Description must be longer than 10 characters"
+
         return errors
 
 class CommentManager(models.Manager):
@@ -110,13 +114,15 @@ class Job(models.Model):
     state = models.CharField(max_length=2)
     company_website = models.TextField()
     job_posting_url = models.TextField()
+    description = models.TextField()
     status_choices = [
         ("1", "Applied"),
         ("2", "Heard Back"),
         ("3", "Interview Scheduled"),
         ("4", "Interviewed"),
-        ("5", "Denied"),
-        ("6", "Received Offer")
+        ("5", "Ghosted"),
+        ("6", "Denied"),
+        ("7", "Received Offer")
     ]
     status = models.CharField(max_length=50, choices=status_choices, default="1")
 
