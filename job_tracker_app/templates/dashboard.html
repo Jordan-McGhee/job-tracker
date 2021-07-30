@@ -10,77 +10,78 @@
 
 </head>
 <body>
-    <nav class="navbar">
+    <div id="wrapper" style="max-width: 1000px; margin: 10px auto;">
+        <nav class="navbar">
 
-        <!-- LEFT SIDE OF NAVBAR -->
-        <div class="navbar-brand">
-            
-            <p class="title is-2 is-align-self-center" id="wtf"><a href="/jobtracker/dashboard">Job Tracker</a></p>
+            <!-- LEFT SIDE OF NAVBAR -->
+            <div class="navbar-brand">
+                
+                <p class="title is-2 is-align-self-center" id="wtf"><a href="/jobtracker/dashboard">Job Tracker</a></p>
 
-            <!-- BURGER MENU -->
-            <a role="button" class="navbar-burger is-align-self-center" id="wtf" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-            </a>
+                <!-- BURGER MENU -->
+                <a role="button" class="navbar-burger is-align-self-center" id="wtf" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
 
-    <!-- LEFT SIDE OF NAVBAR END -->
+        <!-- LEFT SIDE OF NAVBAR END -->
 
-    </div>
-
-        <!-- RIGHT SIDE OF NAVBAR -->
-        <div class="navbar-menu navbar-end">
-
-            <!-- PROFILE -->
-            <p class="navbar-item">
-                {{user.first_name}} {{user.last_name}}
-            </p>
-
-            <!-- New Job App -->
-            <a href="/jobtracker/add_job" class="navbar-item">
-                New Job App
-            </a>
-
-            <!-- LOGOUT -->
-            <div class="navbar-item">
-                <form action="/logout" method="POST">
-                    {% csrf_token %}
-                    <input type="submit" value="LOGOUT" class="button" id="logout">
-                </form>
-            </div>
-
-        
-        <!-- END RIGHT SIDE OF NAV -->
         </div>
 
-    </nav>
+            <!-- RIGHT SIDE OF NAVBAR -->
+            <div class="navbar-menu navbar-end">
 
-    <table>
-        <thead>
-            <th>Company</th>
-            <th>Role</th>
-            <th>Job Post</th>
-            <th>Location</th>
-            <th>Status</th>
-        </thead>
+                <!-- PROFILE -->
+                <p class="navbar-item">
+                    {{user.first_name}} {{user.last_name}}
+                </p>
 
-        <tbody>
-            {% for job in jobs %}
-                <tr>
-                    <td><a href="/jobtracker/job/{{job.id}}">{{job.company}}</a></td>
-                    <td>{{job.role}}</td>
+                <!-- New Job App -->
+                <a href="/jobtracker/add_job" class="navbar-item">
+                    New Job App
+                </a>
 
-                    <!-- FIX URL REDIRECT BELOW IN URLS/VIEWS-->
-                    <td><a href="/{{job.job_posting_url}}">Link to Job Posting</a></td>
+                <!-- LOGOUT -->
+                <div class="navbar-item">
+                    <form action="/logout" method="POST">
+                        {% csrf_token %}
+                        <input type="submit" value="LOGOUT" class="button" id="logout">
+                    </form>
+                </div>
 
-                    <td>{{job.city}}, {{job.state}}</td>
-                    <td>{{job.get_status_display}}</td>
-                </tr>
-            {% endfor %}
-        </tbody>
+            
+            <!-- END RIGHT SIDE OF NAV -->
+            </div>
 
-    </table>
+        </nav>
 
+        <table class="table is-bordered is-fullwidth is-striped">
+            <thead>
+                <th>Company</th>
+                <th>Role</th>
+                <th>Job Post</th>
+                <th>Location</th>
+                <th>Status</th>
+            </thead>
 
+            <tbody>
+                {% for job in jobs %}
+                    <tr>
+                        <td><a href="/jobtracker/job/{{job.id}}">{{job.company}}</a></td>
+                        <td>{{job.role}}</td>
+
+                        <!-- FIX URL REDIRECT BELOW IN URLS/VIEWS-->
+                        <td><a href="/{{job.job_posting_url}}">Link to Job Posting</a></td>
+
+                        <td>{{job.city}}, {{job.state}}</td>
+                        <td>{{job.get_status_display}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+
+    </div>
 </body>
 </html>

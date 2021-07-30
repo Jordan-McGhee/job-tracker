@@ -85,8 +85,8 @@ class JobManager(models.Manager):
 class CommentManager(models.Manager):
     def validator(self, postData):
         errors = {}
-        if len(postData['comment']) < 1:
-            errors['comment'] = "Comment can't be empty"
+        if len(postData['content']) < 1:
+            errors['content'] = "Comment can't be empty"
 
         return errors
 

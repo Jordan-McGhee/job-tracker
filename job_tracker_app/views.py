@@ -85,6 +85,7 @@ def create_new_job_posting(request):
             company_website = request.POST['company_website'],
             job_posting_url = request.POST['job_posting_url'],
             status = request.POST['status'],
+            description = request.POST['description']
         )
     return redirect(f'/jobtracker/job/{job.id}')
 
@@ -119,6 +120,7 @@ def update_job(request, job_id):
         job.company_website = request.POST['company_website']
         job.job_posting_url = request.POST['job_posting_url']
         job.status = request.POST['status']
+        job.description = request.POST['description']
         job.save()
 
     return redirect(f'/jobtracker/job/{job_id}')

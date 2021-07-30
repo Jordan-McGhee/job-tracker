@@ -10,112 +10,118 @@
 
 </head>
 <body>
-    <nav class="navbar">
+    <div id="wrapper" style="max-width: 1000px; margin: 10px auto;">
+        <nav class="navbar">
 
-        <!-- LEFT SIDE OF NAVBAR -->
-        <div class="navbar-brand">
+            <!-- LEFT SIDE OF NAVBAR -->
+            <div class="navbar-brand">
+                
+                <p class="title is-2 is-align-self-center" id="wtf"><a href="/jobtracker/dashboard">Job Tracker</a></p>
+
+                <!-- BURGER MENU -->
+                <a role="button" class="navbar-burger is-align-self-center" id="wtf" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+
+        <!-- LEFT SIDE OF NAVBAR END -->
+
+        </div>
+
+            <!-- RIGHT SIDE OF NAVBAR -->
+            <div class="navbar-menu navbar-end">
+
+                <!-- PROFILE -->
+                <p class="navbar-item">
+                    {{user.first_name}} {{user.last_name}}
+                </p>
+
+                <!-- New Job App -->
+                <a href="/jobtracker/add_job" class="navbar-item">
+                    New Job App
+                </a>
+
+                <!-- LOGOUT -->
+                <div class="navbar-item">
+                    <form action="/logout" method="POST">
+                        {% csrf_token %}
+                        <input type="submit" value="LOGOUT" class="button" id="logout">
+                    </form>
+                </div>
+
             
-            <p class="title is-2 is-align-self-center" id="wtf"><a href="/jobtracker/dashboard">Job Tracker</a></p>
-
-            <!-- BURGER MENU -->
-            <a role="button" class="navbar-burger is-align-self-center" id="wtf" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-            </a>
-
-    <!-- LEFT SIDE OF NAVBAR END -->
-
-    </div>
-
-        <!-- RIGHT SIDE OF NAVBAR -->
-        <div class="navbar-menu navbar-end">
-
-            <!-- PROFILE -->
-            <p class="navbar-item">
-                {{user.first_name}} {{user.last_name}}
-            </p>
-
-            <!-- New Job App -->
-            <a href="/jobtracker/add_job" class="navbar-item">
-                New Job App
-            </a>
-
-            <!-- LOGOUT -->
-            <div class="navbar-item">
-                <form action="/logout" method="POST">
-                    {% csrf_token %}
-                    <input type="submit" value="LOGOUT" class="button" id="logout">
-                </form>
+            <!-- END RIGHT SIDE OF NAV -->
             </div>
 
-        
-        <!-- END RIGHT SIDE OF NAV -->
-        </div>
+        </nav>
 
-    </nav>
-
-    <!-- ERROR MESSAGES -->
-    {% if messages %}
-    <div class="card messages">
-        <header class="card-header" id="error-message">
-                ERROR(S)
-        </header>
-
-        {% for message in messages %}
+        <!-- ERROR MESSAGES -->
+        {% if messages %}
+        <div class="card messages">
             <header class="card-header" id="error-message">
-                    {{message}}
+                    ERROR(S)
             </header>
-        {% endfor %}
+
+            {% for message in messages %}
+                <header class="card-header" id="error-message">
+                        {{message}}
+                </header>
+            {% endfor %}
+        </div>
+        {% endif %}
+        <!-- END ERROR MESSAGES -->
+
+        <form action="/jobtracker/create_job" method="POST">
+            {% csrf_token %}
+
+            <div class="field">
+                <label for="company" class="label">Company</label>
+                <input type="text" class="input" name="company">
+            </div>
+
+            <div class="field">
+                <label for="role" class="label">Role</label>
+                <input type="text" class="input" name="role">
+            </div>
+
+            <div class="field">
+                <label for="status" class="label">Status</label>
+                <select name="category" class="select">
+                    <option value="1" selected>Application Status</option>
+                    {% for choice in status_choices %}
+                        <option value="{{choice.0}}">{{choice.1}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="field">
+                <label for="city" class="label">City</label>
+                <input type="text" class="input" name="city">
+            </div>
+
+            <div class="field">
+                <label for="state" class="label">State</label>
+                <input type="text" class="input" name="state">
+            </div>
+
+            <div class="field">
+                <label for="company_website" class="label">Company Website</label>
+                <input type="text" class="input" name="company_website">
+            </div>
+
+            <div class="field">
+                <label for="job_posting_url" class="label">Job Posting URL</label>
+                <input type="text" class="input" name="job_posting_url">
+            </div>
+
+            <div class="field">
+                <label for="description" class="label">Description</label>
+                <textarea name="description" class="textarea" placeholder="OPTIONAL"></textarea>
+            </div>
+
+            <input type="submit" value="Add Job" class="button" id="submit-button">
+        </form>
+
     </div>
-    {% endif %}
-    <!-- END ERROR MESSAGES -->
-
-    <form action="/jobtracker/create_job" method="POST">
-        {% csrf_token %}
-
-        <div class="field">
-            <label for="company" class="label">Company</label>
-            <input type="text" class="input" name="company">
-        </div>
-
-        <div class="field">
-            <label for="role" class="label">Role</label>
-            <input type="text" class="input" name="role">
-        </div>
-
-        <div class="field">
-            <label for="city" class="label">City</label>
-            <input type="text" class="input" name="city">
-        </div>
-
-        <div class="field">
-            <label for="state" class="label">State</label>
-            <input type="text" class="input" name="state">
-        </div>
-
-        <div class="field">
-            <label for="company_website" class="label">Company Website</label>
-            <input type="text" class="input" name="company_website">
-        </div>
-
-        <div class="field">
-            <label for="job_posting_url" class="label">Job Posting URL</label>
-            <input type="text" class="input" name="job_posting_url">
-        </div>
-
-        <div class="field">
-            <label for="status" class="label">Status</label>
-            <select name="category" class="select">
-                <option value="1" selected>Application Status</option>
-                {% for choice in status_choices %}
-                    <option value="{{choice.0}}">{{choice.1}}</option>
-                {% endfor %}
-            </select>
-        </div>
-
-        <input type="submit" value="Add Job" class="button" id="submit-button">
-    </form>
-
-
 </body>
