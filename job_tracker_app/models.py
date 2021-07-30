@@ -58,16 +58,16 @@ class JobManager(models.Manager):
     def validator(self, postData):
         errors = {}
 
-        if len(postData['company'] < 2):
+        if len(postData['company']) < 2:
             errors['company'] = "Name of company must be at least 2 characters"
 
-        if len(postData['role'] < 2):
+        if len(postData['role']) < 2:
             errors['role'] = "Name of role must be at least 2 characters"
 
-        if len(postData['city'] < 2):
+        if len(postData['city']) < 2:
             errors['city'] = "Name of city must be at least 2 characters"
 
-        if len(postData['state'] < 2):
+        if len(postData['state']) != 2:
             errors['state'] = "Please enter a 2 character abbreviation for the state"
 
         if not WEBSITE_REGEX.match(postData['company_website']):

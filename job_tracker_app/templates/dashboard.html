@@ -74,7 +74,7 @@
                     <td><a href="/{{job.job_posting_url}}">Link to Job Posting</a></td>
 
                     <td>{{job.city}}, {{job.state}}</td>
-                    <td>{{job.status}}</td>
+                    <td>{{job.get_status_display}}</td>
                 </tr>
             {% endfor %}
         </tbody>
