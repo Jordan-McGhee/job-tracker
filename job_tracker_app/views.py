@@ -60,7 +60,13 @@ def dashboard(request):
 
 # ADD JOB POSTING
 def add_job(request):
-    return render(request, "new_job.html")
+
+    context = {
+        "user": User.objects.get(id=request.session['user_id']),
+        "status_choices": Job.status_choices
+    }
+
+    return render(request, "new_job.html", context)
 
 def create_new_job_posting(request):
     if request.method == "POST":

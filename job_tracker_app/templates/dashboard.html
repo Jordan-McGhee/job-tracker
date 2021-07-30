@@ -14,8 +14,8 @@
 
         <!-- LEFT SIDE OF NAVBAR -->
         <div class="navbar-brand">
-            <!-- REPLACE THIS WITH LOGO AFTER MAKING -->
-            <p class="title is-2 is-align-self-center" id="wtf"><a href="#">Job Tracker</a></p>
+            
+            <p class="title is-2 is-align-self-center" id="wtf"><a href="/jobtracker/dashboard">Job Tracker</a></p>
 
             <!-- BURGER MENU -->
             <a role="button" class="navbar-burger is-align-self-center" id="wtf" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -37,7 +37,7 @@
             </p>
 
             <!-- New Job App -->
-            <a href="#" class="navbar-item">
+            <a href="/jobtracker/add_job" class="navbar-item">
                 New Job App
             </a>
 
@@ -67,12 +67,12 @@
         <tbody>
             {% for job in jobs %}
                 <tr>
-                    <td>{{job.company}}</td>
+                    <td><a href="/jobtracker/job/{{job.id}}">{{job.company}}</a></td>
                     <td>{{job.role}}</td>
 
                     <!-- FIX URL REDIRECT BELOW IN URLS/VIEWS-->
                     <td><a href="/{{job.job_posting_url}}">Link to Job Posting</a></td>
-                    
+
                     <td>{{job.city}}, {{job.state}}</td>
                     <td>{{job.status}}</td>
                 </tr>
