@@ -127,17 +127,39 @@ def update_job(request, job_id):
 
     return redirect(f'/jobtracker/job/{job_id}')
 
+def delete_job(request, job_id):
+    if request.method == "POST":
+        job = Job.objects.get(id=job_id)
+        job.delete()
+
+    return redirect("/jobtracker/dashboard")
+
 
 # VIEW JOB POSTING
 def view_job(request, job_id):
     job = Job.objects.get(id=job_id)
 
+    print(f"Look here: {job.get_status_display()}")
+
     context = {
         "user": User.objects.get(id=request.session['user_id']),
         "job": job,
-        "comments": job.comments.all()
+        "comments": job.comments.all(),
+        "status_choices": Job.status_choices,
+        "job_status": job.get_status_display()
     }
     return render(request, "view_job.html", context)
+
+def view_status_update(request, job_id):
+    if request.method == "POST":
+        job = Job.objects.get(id=job_id)
+        # print(f"Original: {job.status}")
+        job.status = request.POST['status']
+        # print(f"request.POST = {request.POST['status']}")
+        # print(f"Changed to: {job.status}")
+        job.save()
+
+    return redirect(f'/jobtracker/job/{job_id}')
 
 def create_comment(request, job_id):
     if request.method == "POST":

@@ -72,7 +72,7 @@
         {% endif %}
         <!-- END ERROR MESSAGES -->
 
-        <form action="/jobtracker/{{job.id}}/update" method="POST">
+        <form action="/jobtracker/job/{{job.id}}/update" method="POST">
             {% csrf_token %}
 
             <div class="field">
@@ -93,6 +93,7 @@
                             <option value="{{choice.0}}" selected>{{choice.1}}</option>
                         {% else %}
                             <option value="{{choice.0}}">{{choice.1}}</option>
+                        {% endif %}
                     {% endfor %}
                 </select>
             </div>
@@ -128,6 +129,11 @@
             </div>
 
             <input type="submit" value="Update Job" class="button" id="submit-button">
+        </form>
+
+        <form action="/jobtracker/job/{{job.id}}/delete" method="POST">
+            {% csrf_token %}
+            <input type="submit" value="Delete Job" class="button is-danger" onclick="return confirm('Are you sure you want to delete this job?');">
         </form>
 
     </div>

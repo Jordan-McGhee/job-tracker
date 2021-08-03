@@ -72,18 +72,38 @@
         {% endif %}
         <!-- END ERROR MESSAGES -->
 
-        <p class="title is-2"><a href="https://{{job.company_website}}" target="_blank">{{job.company}}</a></p>
-        <p>{{job.role}} <span>{{job.city}}, {{job.state}}</span></p>
-        <p>{{job.get_status_display}}</p>
-        <p>Description</p>
+        <p class="title is-2"><a href="https://{{job.company_website}}" target="_blank">{{job.company}}</a> — {{job.role}}</p>
+        <p class="subtitle is-4">{{job.city}}, {{job.state}} <a href="/jobtracker/job/{{job.id}}/edit" id="edit-link">Edit Job</a></p>
+        
+        {% if job.description and job.description != "none" %}
+        <p>Description:</p>
         <p>{{job.description}}</p>
+        {% endif %}
+
+        <form action="/jobtracker/job/{{job.id}}/status_update" method="POST">
+            {% csrf_token %}
+            <div class="field is-grouped is-align-items-center">
+                    <select name="status" class="select is-normal">
+                        {% for choice in status_choices %}
+                            {% if choice.1 == job_status %}
+                                <option value="{{choice.0}}" selected>{{choice.1}}</option>
+                            {% else %}
+                                <option value="{{choice.0}}">{{choice.1}}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                <input type="submit" value="Update Status" class="button is-small">
+            </div>
+        </form>
+
 
         <form action="/jobtracker/job/{{job.id}}/add_comment" method="POST">
             {% csrf_token %}
-            <label for="content" class="label">Add A Comment</label>
-            <textarea name="content" class="textarea"></textarea>
-
-            <input type="submit" value="Add Comment" class="button">
+            <div class="field">
+                <label for="content" class="label">Add A Comment</label>
+                <textarea name="content" class="textarea" rows="2"></textarea>
+            </div>
+            <input type="submit" value="Add Comment" class="button input">
         </form>
 
         {% for comment in comments %}
