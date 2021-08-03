@@ -106,12 +106,25 @@
             <input type="submit" value="Add Comment" class="button input">
         </form>
 
-        {% for comment in comments %}
-            <p>{{comment.content}}</p>
-            <form action="/jobtracker/job/{{job.id}}/comment/{{comment.id}}/delete_comment" method="POST">
-                {% csrf_token %}
-                <input type="submit" value="Delete Comment" class="button is-danger">
-            </form>
-        {% endfor %}
+        <div id="comments">
+            {% for comment in comments reversed %}
+
+            <div class="box" id="comment">
+                <div class="media">
+                    <div class="media-content">
+                        <p class="title is-5">{{comment.created_at|date:"M d, Y"}}</p>
+                        <p>{{comment.content}}</p>
+                    </div>
+                    <div class="media-right is-align-content-center">
+                        <!-- DELETE COMMENT -->
+                        <form action="/jobtracker/job/{{job.id}}/comment/{{comment.id}}/delete_comment" method="POST">
+                                {% csrf_token %}
+                            <input type="submit" value="Delete Comment" class="button">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
     </div>
 </body>

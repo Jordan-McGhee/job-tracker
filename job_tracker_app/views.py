@@ -139,7 +139,7 @@ def delete_job(request, job_id):
 def view_job(request, job_id):
     job = Job.objects.get(id=job_id)
 
-    print(f"Look here: {job.get_status_display()}")
+    # print(f"Look here: {job.get_status_display()}")
 
     context = {
         "user": User.objects.get(id=request.session['user_id']),
