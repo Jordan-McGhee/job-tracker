@@ -34,24 +34,21 @@
         </nav>
 
         <div id="errors">
+            <!-- ERROR MESSAGES -->
             {% if messages %}
-                <div class="card messages">
-                    <header class="card-header">
-                        <p class="card-header-title">
-                            ERRORS:
-                        </p>
-                    </header>
+            <div class="card messages">
+                <header class="card-header" id="error-message">
+                        ERROR(S)
+                </header>
 
-                    {% for message in messages %}
-                        <header class="card-header">
-                            <p class="card-header-title">
-                                {{message}}
-                            </p>
-                        </header>
-                    {% endfor %}
-
+                <div class="card-content">
+                {% for message in messages %}
+                    <p>{{message}}</p>
+                {% endfor %}
                 </div>
+            </div>
             {% endif %}
+            <!-- END ERROR MESSAGES -->
 
         </div>
 

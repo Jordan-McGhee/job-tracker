@@ -7,6 +7,7 @@
     <title>Job App Tracker</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     {% load static %}
+    <link rel="stylesheet" href="{% static 'css/jobtracker.css' %}">
 
 </head>
 <body>
@@ -63,11 +64,11 @@
                     ERROR(S)
             </header>
 
+            <div class="card-content">
             {% for message in messages %}
-                <header class="card-header" id="error-message">
-                        {{message}}
-                </header>
+                <p>{{message}}</p>
             {% endfor %}
+            </div>
         </div>
         {% endif %}
         <!-- END ERROR MESSAGES -->
@@ -85,7 +86,7 @@
                 <input type="text" class="input" name="role">
             </div>
 
-            <div class="field">
+            <div class="field" id="select">
                 <label for="status" class="label">Status</label>
                 <select name="status" class="select">
                     <option value="1" selected>Application Status</option>

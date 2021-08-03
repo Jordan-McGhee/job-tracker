@@ -7,6 +7,7 @@
     <title>Job App Tracker</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     {% load static %}
+    <link rel="stylesheet" href="{% static 'css/jobtracker.css' %}">
 
 </head>
 <body>
@@ -60,14 +61,14 @@
         {% if messages %}
         <div class="card messages">
             <header class="card-header" id="error-message">
-                    ERROR(S)
+                    ERROR
             </header>
 
+            <div class="card-content">
             {% for message in messages %}
-                <header class="card-header" id="error-message">
-                        {{message}}
-                </header>
+                <p>{{message}}</p>
             {% endfor %}
+            </div>
         </div>
         {% endif %}
         <!-- END ERROR MESSAGES -->
@@ -76,14 +77,16 @@
         <p class="subtitle is-4">{{job.city}}, {{job.state}} <a href="/jobtracker/job/{{job.id}}/edit" id="edit-link">Edit Job</a></p>
         
         {% if job.description and job.description != "none" %}
-        <p>Description:</p>
-        <p>{{job.description}}</p>
+        <div id="view-description">
+            <p>Description:</p>
+            <p>{{job.description}}</p>
+        </div>
         {% endif %}
 
         <form action="/jobtracker/job/{{job.id}}/status_update" method="POST">
             {% csrf_token %}
-            <div class="field is-grouped is-align-items-center">
-                    <select name="status" class="select is-normal">
+            <div class="field is-grouped is-align-items-center" id="view-select">
+                    <select name="status" class="select">
                         {% for choice in status_choices %}
                             {% if choice.1 == job_status %}
                                 <option value="{{choice.0}}" selected>{{choice.1}}</option>
@@ -92,34 +95,34 @@
                             {% endif %}
                         {% endfor %}
                     </select>
-                <input type="submit" value="Update Status" class="button is-small">
+                <input type="submit" value="Update Status" class="button">
             </div>
         </form>
 
 
-        <form action="/jobtracker/job/{{job.id}}/add_comment" method="POST">
-            {% csrf_token %}
-            <div class="field">
-                <label for="content" class="label">Add A Comment</label>
-                <textarea name="content" class="textarea" rows="2"></textarea>
-            </div>
-            <input type="submit" value="Add Comment" class="button input">
-        </form>
+        <div id="comment-section">
+            <form action="/jobtracker/job/{{job.id}}/add_comment" method="POST">
+                {% csrf_token %}
+                <div class="field">
+                    <label for="content" class="label">Add A Comment</label>
+                    <textarea name="content" class="textarea" rows="2"></textarea>
+                </div>
+                <input type="submit" value="Add Comment" class="button input">
+            </form>
 
-        <div id="comments">
             {% for comment in comments reversed %}
 
-            <div class="box" id="comment">
+            <div class="box" id="individual-comment">
                 <div class="media">
                     <div class="media-content">
                         <p class="title is-5">{{comment.created_at|date:"M d, Y"}}</p>
-                        <p>{{comment.content}}</p>
+                        <p class="comment-content">{{comment.content}}</p>
                     </div>
                     <div class="media-right is-align-content-center">
                         <!-- DELETE COMMENT -->
                         <form action="/jobtracker/job/{{job.id}}/comment/{{comment.id}}/delete_comment" method="POST">
                                 {% csrf_token %}
-                            <input type="submit" value="Delete Comment" class="button">
+                            <input type="submit" value="Delete Comment" class="button" onclick="return confirm('Are you sure you want to delete this comment?');">
                         </form>
                     </div>
                 </div>

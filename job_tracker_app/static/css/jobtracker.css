@@ -1,0 +1,70 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+#wrapper {
+    width: 95%;
+    margin: auto;
+}
+
+.messages {
+    color: red;
+    margin: 10px;
+    list-style-type: none;
+    outline: 1px solid red;
+    padding: 15px;
+}
+
+.card-header {
+    padding: 15px;
+}
+
+/* dashboard */
+
+
+
+/* new_job */
+
+#select select {
+    padding: 0px 5px;
+}
+
+/* view_job */
+
+#edit-link {
+    color: rgba(0, 0, 255, .15);
+    margin-left: 5px;
+}
+
+#edit-link:hover {
+    color: blue;
+}
+
+#view-description {
+    margin-bottom: 10px;
+}
+
+#view-select select {
+    padding: 2px 5px;
+    margin-right: 10px;
+}
+
+#comment-section {
+    margin-top: 15px;
+}
+
+#comment-section form {
+    margin-bottom: 15px;
+}
+
+.comment-content {
+    max-height: 400px;
+    overflow: scroll;
+}
+
+/* edit_job */
+
+#edit-delete {
+    margin-top: 10px;
+}
