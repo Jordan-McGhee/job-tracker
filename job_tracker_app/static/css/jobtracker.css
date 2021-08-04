@@ -34,6 +34,13 @@ nav {
 
 /* dashboard */
 
+.th {
+    cursor: pointer;
+}
+
+.th:hover {
+    background-color:rgb(246, 246, 246);
+}
 
 /* new_job */
 
