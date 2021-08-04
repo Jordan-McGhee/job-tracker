@@ -7,6 +7,7 @@
     <title>Job App Tracker</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     {% load static %}
+    <link rel="stylesheet" href="{% static 'css/jobtracker.css' %}">
 
 </head>
 <body>
@@ -16,7 +17,7 @@
             <!-- LEFT SIDE OF NAVBAR -->
             <div class="navbar-brand">
                 
-                <p class="title is-2 is-align-self-center" id="wtf"><a href="/jobtracker/dashboard">Job Tracker</a></p>
+                <p class="title is-2 is-align-self-center" id="logo"><a href="/jobtracker/dashboard">Job Tracker</a></p>
 
                 <!-- BURGER MENU -->
                 <a role="button" class="navbar-burger is-align-self-center" id="wtf" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -44,7 +45,7 @@
 
                 <!-- LOGOUT -->
                 <div class="navbar-item">
-                    <form action="/logout" method="POST">
+                    <form action="/logout" method="POST" id="logout">
                         {% csrf_token %}
                         <input type="submit" value="LOGOUT" class="button" id="logout">
                     </form>
@@ -56,33 +57,43 @@
 
         </nav>
 
-        <table class="table is-bordered is-fullwidth is-striped is-hoverable">
-            <thead>
-                <th>Company</th>
-                <th>Role</th>
-                <th>Job Post</th>
-                <th>Location</th>
-                <th>Status</th>
-            </thead>
+        {% if jobs %}
+            <table class="table is-bordered is-fullwidth is-striped is-hoverable">
+                <thead>
+                    <th>Company</th>
+                    <th>Role</th>
+                    <th>Job Post</th>
+                    <th>Status</th>
+                </thead>
 
-            <tbody>
-                {% for job in jobs %}
-                    <tr>
-                        <td><a href="/jobtracker/job/{{job.id}}">{{job.company}}</a></td>
-                        <td>{{job.role}}</td>
+                <tbody>
+                    {% for job in jobs %}
+                        <tr>
+                            <td><a href="/jobtracker/job/{{job.id}}">{{job.company}}</a></td>
+                            <td>{{job.role}}</td>
 
-                        <td><a href="https://{{job.job_posting_url}}" target="_blank">Link to Job Posting</a></td>
+                            <td><a href="https://{{job.job_posting_url}}" target="_blank">Link to Job Posting</a></td>
+                            <td>{{job.get_status_display}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
 
-                        <td>{{job.city}}, {{job.state}}</td>
-                        <td>{{job.get_status_display}}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-
-        </table>
+            </table>
+        {% endif %}
 
         <a href="/jobtracker/add_job" class="button input">Add Job</a>
 
     </div>
+
+    <script>
+        (function() {
+            var burger = document.querySelector('.navbar-burger');
+            var menu = document.querySelector('.navbar-menu');
+            burger.addEventListener('click', function() {
+                burger.classList.toggle('is-active');
+                menu.classList.toggle('is-active');
+            });
+        })();
+    </script>
 </body>
 </html>

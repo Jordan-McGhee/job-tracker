@@ -17,7 +17,7 @@
             <!-- LEFT SIDE OF NAVBAR -->
             <div class="navbar-brand">
                 
-                <p class="title is-2 is-align-self-center" id="wtf"><a href="/jobtracker/dashboard">Job Tracker</a></p>
+                <p class="title is-2 is-align-self-center" id="logo"><a href="/jobtracker/dashboard">Job Tracker</a></p>
 
                 <!-- BURGER MENU -->
                 <a role="button" class="navbar-burger is-align-self-center" id="wtf" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -130,4 +130,16 @@
             {% endfor %}
         </div>
     </div>
+
+    <script>
+        (function() {
+            var burger = document.querySelector('.navbar-burger');
+            var menu = document.querySelector('.navbar-menu');
+            burger.addEventListener('click', function() {
+                burger.classList.toggle('is-active');
+                menu.classList.toggle('is-active');
+            });
+        })();
+    </script>
 </body>
+</html>

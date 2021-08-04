@@ -3,9 +3,21 @@
     padding: 0px;
 }
 
+nav {
+    border-bottom: 1px solid black;
+    margin-bottom: 15px;
+}
+
+#logo {
+    margin-bottom: 0px;
+    margin-left: 10px;
+    padding-bottom: 0px;
+}
+
 #wrapper {
     width: 95%;
-    margin: auto;
+    max-width: 1000px;
+    margin: 10px auto;
 }
 
 .messages {
@@ -21,7 +33,6 @@
 }
 
 /* dashboard */
-
 
 
 /* new_job */
