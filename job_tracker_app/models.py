@@ -4,7 +4,7 @@ import bcrypt
 import re
 
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
-# WEBSITE_REGEX = re.compile(r"@^(http\:\/\/|https\:\/\/)?([a-z0-9][a-z0-9\-]*\.)+[a-z0-9]*$@i")
+WEBSITE_REGEX = re.compile(r"([a-z]+://)?([a-z]+\.)?(.*)\.(.*)")
 
 # MANAGERS
 
@@ -76,11 +76,11 @@ class JobManager(models.Manager):
         if len(postData['job_posting_url']) < 1:
             errors['job_posting_url'] = "Please enter a URL for the job posting"
 
-        # if not WEBSITE_REGEX.match(postData['company_website']):
-        #     errors['company_url'] = "Please enter a valid URL for the company"
+        if not WEBSITE_REGEX.match(postData['company_website']):
+            errors['company_url'] = "Please enter a valid URL for the company"
 
-        # if postData['job_posting_url'] and not WEBSITE_REGEX.match(postData['job_posting_url']):
-        #     errors['job_posting_url'] = "Please enter a valid URL for the job posting"
+        if postData['job_posting_url'] and not WEBSITE_REGEX.match(postData['job_posting_url']):
+            errors['job_posting_url'] = "Please enter a valid URL for the job posting"
 
         if postData['description']:
             if len(postData['description']) < 10 :
