@@ -110,7 +110,7 @@ def update_job(request, job_id):
         if len(errors) > 0:
             for k,v in errors.items():
                 messages.error(request, v)
-            return redirect(f"/jobtracker/edit_job")
+            return redirect(f"/jobtracker/job/{job_id}/edit")
 
 
         job = Job.objects.get(id=job_id)
