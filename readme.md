@@ -8,5 +8,4 @@ Access the app [here.](http://18.188.57.204/)
 Guest Login Info:  
 
 **Email**: guest@guest.com  
-
 **Password**: 12345678
