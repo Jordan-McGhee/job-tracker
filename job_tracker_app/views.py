@@ -39,6 +39,15 @@ def login(request):
 
     return redirect('/')
 
+def guest(request):
+    if User.objects.get(email = "guestyguest@guest.com"):
+        user = User.objects.get(email = "guestyguest@guest.com")
+    else:
+        user = User.objects.create(first_name = "Guesty", last_name = "Guest", email="guestyguest@guest.com", password = "12345678")
+    request.session['user_id'] = user.id
+
+    return redirect('/jobtracker/dashboard')
+
 def logout(request):
     request.session.flush()
     return redirect('/')

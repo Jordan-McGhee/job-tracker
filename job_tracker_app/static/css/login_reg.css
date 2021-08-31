@@ -50,3 +50,7 @@ nav {
 .card-header {
     padding: 15px;
 }
+
+#guest-login {
+    margin-left: 10px;
+}
