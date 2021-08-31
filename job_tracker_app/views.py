@@ -40,7 +40,9 @@ def login(request):
     return redirect('/')
 
 def guest(request):
-    if User.objects.get(email = "guestyguest@guest.com"):
+    user = User.objects.filter(email="guestyguest@guest.com")
+
+    if user:
         user = User.objects.get(email = "guestyguest@guest.com")
     else:
         user = User.objects.create(first_name = "Guesty", last_name = "Guest", email="guestyguest@guest.com", password = "12345678")
