@@ -89,6 +89,8 @@ def create_new_job_posting(request):
                 messages.error(request, v)
             return redirect(f"/jobtracker/add_job")
 
+        
+
         job = Job.objects.create(
             company = request.POST['company'],
             role = request.POST['role'],

@@ -142,7 +142,7 @@ class Job(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"Company: {self.company}, Role: {self.role}"
+        return f"Company: {self.company}, Role: {self.role}, ID: {self.id}"
 
 class Comment(models.Model):
     content = models.TextField()

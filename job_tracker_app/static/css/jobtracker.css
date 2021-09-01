@@ -33,6 +33,13 @@ nav {
 }
 
 /* dashboard */
+.search {
+    margin-bottom: 10px;
+}
+
+#add-job {
+    margin-top: 10px;
+}
 
 .th {
     cursor: pointer;
@@ -40,6 +47,19 @@ nav {
 
 .th:hover {
     background-color:rgb(246, 246, 246);
+}
+
+.company-hover {
+    cursor: pointer;
+    color: blue;
+}
+
+.company-hover:hover {
+    color: black;
+}
+
+td a {
+    color: blue;
 }
 
 /* new_job */
