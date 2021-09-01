@@ -89,15 +89,22 @@ def create_new_job_posting(request):
                 messages.error(request, v)
             return redirect(f"/jobtracker/add_job")
 
-        
+        company_url = request.POST['company_website']
+        job_posting = request.POST['job_posting_url']
+
+        if "https://" in request.POST['company_website']:
+            company_url = request.POST['company_website'][8:]
+
+        if "https://" in request.POST['job_posting_url']:
+            job_posting = request.POST['job_posting_url'][8:]
 
         job = Job.objects.create(
             company = request.POST['company'],
             role = request.POST['role'],
             city = request.POST['city'],
             state = request.POST['state'],
-            company_website = request.POST['company_website'],
-            job_posting_url = request.POST['job_posting_url'],
+            company_website = company_url,
+            job_posting_url = job_posting,
             status = request.POST['status'],
             description = request.POST['description'],
             user = user
@@ -125,6 +132,14 @@ def update_job(request, job_id):
                 messages.error(request, v)
             return redirect(f"/jobtracker/job/{job_id}/edit")
 
+        company_url = request.POST['company_website']
+        job_posting = request.POST['job_posting_url']
+
+        if "https://" in request.POST['company_website']:
+            company_url = request.POST['company_website'][8:]
+
+        if "https://" in request.POST['job_posting_url']:
+            job_posting = request.POST['job_posting_url'][8:]
 
         job = Job.objects.get(id=job_id)
 
@@ -132,8 +147,8 @@ def update_job(request, job_id):
         job.role = request.POST['role']
         job.city = request.POST['city']
         job.state = request.POST['state']
-        job.company_website = request.POST['company_website']
-        job.job_posting_url = request.POST['job_posting_url']
+        job.company_website = company_url
+        job.job_posting_url = job_posting
         job.status = request.POST['status']
         job.description = request.POST['description']
         job.save()

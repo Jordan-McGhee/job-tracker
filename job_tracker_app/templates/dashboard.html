@@ -77,7 +77,7 @@
                             <td class="company company-hover" onclick="window.location='/jobtracker/job/{{job.id}}';">{{job.company}}</td>
                             <td class="role">{{job.role}}</td>
 
-                            <td><a href="{{job.job_posting_url}}" target="_blank">Link to Job Posting</a></td>
+                            <td><a href="https://{{job.job_posting_url}}" target="_blank">Link to Job Posting</a></td>
                             <td class="status">{{job.get_status_display}}</td>
                         </tr>
                     {% endfor %}
