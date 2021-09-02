@@ -73,7 +73,7 @@
         {% endif %}
         <!-- END ERROR MESSAGES -->
 
-        <p class="title is-2"><a href="https://{{job.company_website}}" target="_blank">{{job.company}}</a> — {{job.role}}</p>
+        <p class="title is-2"><a href="https://{{job.company_website}}" target="_blank">{{job.company}}</a> — <a href="https://{{job.job_posting_url}}">{{job.role}}</a></p>
         <p class="subtitle is-4">{{job.city}}, {{job.state}} <a href="/jobtracker/job/{{job.id}}/edit" id="edit-link">Edit Job</a></p>
         
         {% if job.description and job.description != "none" %}
