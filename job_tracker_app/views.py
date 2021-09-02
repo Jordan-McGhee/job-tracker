@@ -119,7 +119,8 @@ def edit_job(request, job_id):
     context = {
         "user": User.objects.get(id=request.session['user_id']),
         "job": job,
-        "status_choices": Job.status_choices
+        "status_choices": Job.status_choices,
+        "job_status": job.get_status_display()
     }
     return render(request, "edit_job.html", context)
 

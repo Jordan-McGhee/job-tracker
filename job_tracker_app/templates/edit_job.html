@@ -90,7 +90,7 @@
                 <label for="status" class="label">Status</label>
                 <select name="status" class="select">
                     {% for choice in status_choices %}
-                        {% if choice.1 == job.status %}
+                        {% if choice.1 == job_status %}
                             <option value="{{choice.0}}" selected>{{choice.1}}</option>
                         {% else %}
                             <option value="{{choice.0}}">{{choice.1}}</option>
