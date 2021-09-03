@@ -12,4 +12,4 @@ Access the app [here.](http://3.17.138.42/)
 - Users can add comments for each job and update the status along the interview process
 
 ### Dashboard
-![Main Dashboard Gif](Login/Register.gif)
+![Main Dashboard Gif](https://github.com/Jordan-McGhee/project-gifs/tree/main/JobTracker/Dashboard.gif)
