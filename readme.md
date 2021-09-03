@@ -11,6 +11,8 @@ Access the app [here.](http://3.17.138.42/)
 - New job postings hold information about the role, location, company website, a link to the job posting, and an optional description 
 - Users can add comments for each job and update the status throughout the interview process
 
+## Demo
+
 ### Dashboard
 <img src="dashboard.gif" alt="Main Dashboard Gif">
 
