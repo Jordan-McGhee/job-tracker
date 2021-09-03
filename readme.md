@@ -12,10 +12,10 @@ Access the app [here.](http://3.17.138.42/)
 - Users can add comments for each job and update the status throughout the interview process
 
 ### Dashboard
-<img src="dashboard.gif" width="50%" alt="Main Dashboard Gif">
+<img src="dashboard.gif" width="90%" alt="Main Dashboard Gif">
 
 ### Individual Job Page
-<img src="view-job.gif" width="50%" alt="Individual Job Gif">
+<img src="view-job.gif" width="90%" alt="Individual Job Gif">
 
 ### Creating & Deleting a Job Entry
-<img src="create-delete.gif" width="50%" alt="Creating & Deleting Gif">
+<img src="create-delete.gif" width="90%" alt="Creating & Deleting Gif">
