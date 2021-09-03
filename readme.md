@@ -1,7 +1,7 @@
 # Job App Tracker  
 
 A responsive web app designed for users to easily keep track of any job they apply to during their search.
-Made with Python/Django, Basic JS, HTML, and CSS/Bulma.  
+Made with Python/Django, JavaScript, HTML, and CSS, using the Bulma framework.  
 
 Access the app [here.](http://3.17.138.42/)  
 
@@ -12,4 +12,4 @@ Access the app [here.](http://3.17.138.42/)
 - Users can add comments for each job and update the status along the interview process
 
 ### Dashboard
-![Main Dashboard Gif](Login:Register.gif)
+![Main Dashboard Gif](Login/Register.gif)
