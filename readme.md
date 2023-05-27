@@ -3,8 +3,6 @@
 A responsive web app designed for users to easily keep track of any job they apply to during their search.
 Made with Python/Django, JavaScript, HTML, and CSS, using the Bulma framework.  
 
-Access the app [here.](http://3.17.138.42/)  
-
 ## Features
 - Validations for Login/Register page
 - Searchable & sortable dashboard table holding recent job application entries using list.js API
